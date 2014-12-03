@@ -3,13 +3,13 @@ session_start();
 error_reporting('ERROR');
 
 $uid=$_SESSION['uid']; 
-
+echo"hello $uid";
 mysql_connect("localhost","root","");
 mysql_select_db("medicare");
 
 $sql="select * from patient where emailid='$uid'";
-	$qr=mysql_query($sql);
-	$r=mysql_fetch_array($qr);
+$qr=mysql_query($sql);
+$r=mysql_fetch_array($qr);
 
 //$uname=$_SESSION['uname'];
 //$uname="ketan";
@@ -126,12 +126,7 @@ $path1="theme/$tn";
   
    <tr>
     <td bgcolor="#F4F4F4">GENDER</td>
-    <td><font style="font-family:'Lucida Sans Unicode', 'Lucida Grande', sans-serif" color="<?php echo "#".$Button_Color;?>" size="3" ><?php if($r[6]==1)
-	{
-		$gen = "male";
-	}
-	else $gen = "female";
-	echo $gen ?></font></td>
+    <td><font style="font-family:'Lucida Sans Unicode', 'Lucida Grande', sans-serif" color="<?php echo "#".$Button_Color;?>" size="3" ><?php echo"$r[6]"?></font></td>
   </tr>
  
   
@@ -150,14 +145,19 @@ $path1="theme/$tn";
   </tr>
   
   <tr>
-    <td bgcolor="#F4F4F4"> ADDRESS</td>
-    <td><font style="font-family:'Lucida Sans Unicode', 'Lucida Grande', sans-serif" color="<?php echo "#".$Button_Color;?>" size="3" ><?php echo $r[7];?></font></td>
+    <td bgcolor="#F4F4F4"> SKYPE ID</td>
+    <td><font style="font-family:'Lucida Sans Unicode', 'Lucida Grande', sans-serif" color="<?php echo "#".$Button_Color;?>" size="3" ><?php echo $r[4];?></font></td>
   </tr>
   
   <tr>
-    <td bgcolor="#F4F4F4">COUNTRY	</td>
+    <td bgcolor="#F4F4F4">CITY</td>
     <td><font style="font-family:'Lucida Sans Unicode', 'Lucida Grande', sans-serif" color="<?php echo "#".$Button_Color;?>" size="3" ><?php echo $r[8];?></font></td>
   </tr>
+  <tr>
+    <td bgcolor="#F4F4F4">COUNTRY	</td>
+    <td><font style="font-family:'Lucida Sans Unicode', 'Lucida Grande', sans-serif" color="<?php echo "#".$Button_Color;?>" size="3" ><?php echo $r[9];?></font></td>
+  </tr>
+  
     <tr><td><br></td><td><br></td></tr>
   
 </table>

@@ -72,12 +72,11 @@ if($_REQUEST['mset'])
 <h1>
 Settings
 </h1>
-<img src="VR2.jpg" width="560px">
-</td></tr>
+<p><img src="VR2.jpg" width="560px"><a href="doct.php">home page</a></td></tr>
 
 <tr><td align="left"  style="font:Verdana, Geneva, sans-serif; color:FF3F00; font-weight:700; font-size:20px"> Update name</td></tr>
 
-<tr><td align="right" style="font:Verdana, Geneva, sans-serif; color:FF3F00;"><input type="text" name="fname" placeholder=" first name"><input type="text" name="lname" placeholder=" last name"><input type="button" name="fset" value="Submit" style="font:Verdana, Geneva, sans-serif; font-size:15px; border-bottom-style:solid;border-color:#FF9933; width:90px; height:22px; background-color:#CCC; color:#000"><br>
+<tr><td align="right" style="font:Verdana, Geneva, sans-serif; color:FF3F00;"><input type="text" name="fname" placeholder=" first name"><input type="text" name="lname" placeholder=" last name" required><input type="button" name="fset" value="Submit" style="font:Verdana, Geneva, sans-serif; font-size:15px; border-bottom-style:solid;border-color:#FF9933; width:90px; height:22px; background-color:#CCC; color:#000"><br>
 <img src="VR2.jpg" width="560px"></td></tr>
 
 

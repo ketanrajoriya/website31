@@ -2,6 +2,16 @@
 session_start();
 error_reporting('ERROR');
 session_unset($_REQUEST['uid']);
+$servername = "localhost";
+$username = "root";
+$password = "";
+$db="medicare";
+$conn = new mysqli($servername, $username, $password,$db);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,6 +23,7 @@ session_unset($_REQUEST['uid']);
 <link rel="icon" href="images/favicon.ico">
 <link rel="shortcut icon" href="images/favicon.ico" />
 <link rel="stylesheet" href="css/style.css">
+
 
 <script src="js/jquery.js"></script>
 <script src="js/jquery-migrate-1.1.1.js"></script>
@@ -148,6 +159,7 @@ xmlhttp.onreadystatechange=function()
       <div class="row">
         <div class="grid_12 ">
           <div class="navigation ">
+   
 
 
 <nav align="center">	
@@ -169,14 +181,89 @@ xmlhttp.onreadystatechange=function()
 <li><a href="contacts.html">CONTACT US</a>	</li>	
 
 </ul>		
-</nav>  
+</nav>
+       <script>
+  (function() {
+    var cx = '002442566368988776867:opb7kezhbje';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<gcse:search></gcse:search>  
+<form>
+<select name="select"><option value="" selected>select</option>
+<option value="cardiologist" >cardiologist</option>
+<option value="orthopadic">orthopadic</option>
+<option value="cardiologist" >cardiologist</option>
+<option value="orthopaedic">orthopaedic</option>
+<option value="cardiologist" >cardiologist</option>
+<option value="orthopaedic">orthopaedic</option>
+<option value="cardiologist" >cardiologist</option>
+<option value="orthopaedic">orthopaedic</option>
+</select>
+<input type="submit" name="but" value="submit"></form>
   <form id="searchbox" action=""><table>
 
-<tr><td>Find a specialist Or Browse by Speciality<input type="text" id="search" onKeyUp="searc(this.value)" placeholder="Type here"    ></td></tr>
+<tr><td>Find a specialist Or Browse by Speciality<input type="text" placeholder="Type here" name="searchbr"></td><td></td><td><input type="submit"name="searchk" value="search"></td></tr>
 
 <tr><td id="main"></td></tr>
 
 </table></form>
+
+<?php
+$select=$_REQUEST['select'];
+
+if($_REQUEST['but'])
+{
+	$sql = "select firstname,lastname,emailid from doctor where speciality='$select'";
+	$result = $conn->query($sql);
+	
+	foreach($result as $val)
+	{
+		if($val!="")
+		{
+		echo"<table border='1'>";
+		echo"<br> <tr><td> &nbsp;&nbsp;&nbsp;flirst name &nbsp;&nbsp; </td> "."<td>&nbsp;&nbsp;last name</td>";
+			
+			echo "<br><tr><td> &nbsp;&nbsp;&nbsp;".$val["firstname"]."&nbsp;&nbsp; </td> "."<td>&nbsp;&nbsp;".$val["lastname"]."";
+			echo '<a href="doctprof.php?content='.$val['emailid'].'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;view profile</a></td>';
+			
+			echo"</table>";
+			
+			}
+	}
+	}
+?>
+<?php
+$uiid=$_SESSION['uid'];
+
+$select=$_REQUEST['select'];
+ $searchbr=$_REQUEST['searchbr'];
+if($_REQUEST['searchk'])
+{
+	$sql = "select firstname,lastname,emailid from doctor where firstname='$searchbr'";
+	$result = $conn->query($sql);
+	
+	foreach($result as $val)
+	{
+		if($val!="")
+		{
+		echo"<table border='1'>";
+		echo"<br> <tr><td> &nbsp;&nbsp;&nbsp;flirst name &nbsp;&nbsp; </td> "."<td>&nbsp;&nbsp;last name</td>";
+					
+			echo "<br><tr><td> &nbsp;&nbsp;&nbsp;".$val["firstname"]."&nbsp;&nbsp; </td> "."<td>&nbsp;&nbsp;".$val["lastname"]."";
+			echo '<a href="doctprof.php?content='.$val['emailid'].'">    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;view profile</a></td>';
+			echo"</table>";
+			
+			}
+			else echo" there is no doctor registered with this name in our website";
+	}
+	}?>
 
 
 <div class="clear"></div>
@@ -199,8 +286,9 @@ Doctor's Login
   <a href="patientlogin.php" class="banner "><div class="maxheight">
    <div class="fa fa-lightbulb-o"></div>User Login </div>
           </a>
-          <a href="#" class="banner "><div class="maxheight1">
-            <div class="fa fa-cog"></div>Find Doctors</div>
+          <a href="findmedicine.php" class="banner "><div class="maxheight1">
+            <div class="fa fa-cog"></div>
+            Find Medine</div>
           </a>
           <a href="#" class="banner "><div class="maxheight1">
             <div class="fa fa-briefcase"></div>Video call</div>

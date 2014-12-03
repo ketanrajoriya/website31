@@ -51,7 +51,7 @@ image3.src="imagesthree.jpg";
     <div class="row">
       <div class="grid_12 rel">
         
-          <a href="index.html">
+          <a href="doct.php">
 
 
             <img src="images/logo.png" alt="Logo alt">
@@ -67,6 +67,8 @@ image3.src="imagesthree.jpg";
 
 <?php
 session_start();
+//session_unset($use);
+?><?php
 error_reporting('ERROR');
 $use=$_SESSION['user'];
 $user=$_SESSION['usernam'];
@@ -127,8 +129,18 @@ $path1="theme/$tn";
  echo "welcome <a href='doctorprofile.php'>&nbsp;&nbsp;&nbsp;$user</a>" ;
                echo "<a href='doctorsettings.php'>&nbsp;&nbsp;&nbsp;settings</a>"; 
              echo"<a href='doctorprofile.php'><img src='profilepic.jpg' align='right' height='70px'></a>"; ?>
-
-<h1 class="doc" align="right "> DOCTOR'S PANEL </h1> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+             
+             
+             
+             
+             
+             <form action="inbox.php">
+<input type="submit" value="notifications">
+</form>
+<!--<form action="Dcmpny Group's/Inbox.php">
+<input type="submit" value="notification">
+</form>
+--><h1 class="doc" align="right "> DOCTOR'S PANEL </h1> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 
 <div class="container">
@@ -153,9 +165,9 @@ $path1="theme/$tn";
 <li><a href="contacts.html">CONTACT US</a>	</li>	
 </ul>		
 </nav>
-<form id="searchbox" action=""><table>
+<!--<form id="searchbox" action=""><table>
 
-<tr><td>Find a specialist Or Browse by Speciality<input type="text" id="search" onKeyUp="searc(this.value)" placeholder="Type here"    ></td></tr>
+<tr><td>Find a specialist Or Browse by Speciality<input type="text" id="search" onKeyUp="searc(this.value)" placeholder="Type here"    ></td></tr>-->
 
 <tr><td id="main"></td></tr>
 

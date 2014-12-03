@@ -72,7 +72,7 @@ $path1="theme/$tn";
 <table width="100%" border="0" cellspacing="0" >
 
 <tr>
-    <td colspan="2" align="center"><font style="font-family:'Lucida Sans Unicode', 'Lucida Grande', sans-serif" color="#000000" size="+2" ><hr /><?php echo $r[0]; ?> - Profile</font><hr /></td>
+    <td colspan="2" align="center"><font style="font-family:'Lucida Sans Unicode', 'Lucida Grande', sans-serif" color="#000000" size="+2" ><hr /><?php echo $r[0]; ?> - Profile<a href="doct.php">home</a></font><hr /></td>
   </tr>
   
   <tr>
@@ -149,16 +149,25 @@ $path1="theme/$tn";
     <td><font style="font-family:'Lucida Sans Unicode', 'Lucida Grande', sans-serif" color="<?php echo "#".$Button_Color;?>" size="3" ><?php echo $r[2]?></font></td>
   </tr>
   
-  <tr>
-    <td bgcolor="#F4F4F4"> ADDRESS</td>
+   <tr>
+    <td bgcolor="#F4F4F4"> HOSPITAL INFORMATION</td>
     <td><font style="font-family:'Lucida Sans Unicode', 'Lucida Grande', sans-serif" color="<?php echo "#".$Button_Color;?>" size="3" ><?php echo $r[7];?></font></td>
   </tr>
-  
   <tr>
-    <td bgcolor="#F4F4F4">COUNTRY	</td>
-    <td><font style="font-family:'Lucida Sans Unicode', 'Lucida Grande', sans-serif" color="<?php echo "#".$Button_Color;?>" size="3" ><?php echo $r[11];?></font></td>
+    <td bgcolor="#F4F4F4"> EDUCATIONAL INFORMATION</td>
+    <td><font style="font-family:'Lucida Sans Unicode', 'Lucida Grande', sans-serif" color="<?php echo "#".$Button_Color;?>" size="3" ><?php echo $r[8];?></font></td>
   </tr>
   
+
+<tr>
+    <td bgcolor="#F4F4F4">CITY	</td>
+    <td><font style="font-family:'Lucida Sans Unicode', 'Lucida Grande', sans-serif" color="<?php echo "#".$Button_Color;?>" size="3" ><?php echo $r[12];?></font></td>
+  </tr>
+    <tr>
+    <td bgcolor="#F4F4F4">COUNTRY	</td>
+    <td><font style="font-family:'Lucida Sans Unicode', 'Lucida Grande', sans-serif" color="<?php echo "#".$Button_Color;?>" size="3" ><?php echo $r[13];?></font></td>
+  </tr>
+
 </table>
 
 

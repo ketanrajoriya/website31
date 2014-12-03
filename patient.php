@@ -8,6 +8,7 @@ $use=$_SESSION['user'];
 $ketan=$_SESSION['ketan'];
 //$_SESSION['log']=$ketan;
 $_SESSION['uid']=$ketan;
+//echo"hello $ketan";
 mysql_connect("localhost","root","");
 mysql_select_db("medicare");
 
@@ -17,7 +18,7 @@ $sql="select * from patient where emailid=$ketan";
 	
 		
 //$_SESSION['uid1']=$r[2];
-	//echo"$r[2]";
+//echo"$r[2]";
 	
 	?>
 
@@ -144,7 +145,7 @@ xmlhttp.onreadystatechange=function()
     <div class="row">
       <div class="grid_12 rel">
         
-          <a href="index.php">
+          <a href="patient.php">
 
 
             <img src="images/logo.png" alt="Logo alt">
@@ -167,6 +168,10 @@ xmlhttp.onreadystatechange=function()
  echo "welcome  &nbsp<a href='patientprofile.php'>$use &nbsp&nbsp&nbsp&nbsp</a>" ;
                echo "<a href='patientsettings.php'>settings</a>"; 
              echo"<a href='patientprofile.php'><img src='profilepic.jpg' align='right' height='70px'>"; ?>
+             
+<form action="inbox.php">
+<input type="submit" value="notifications">
+</form>
 
 <h1 class="doc"> PATIENT'S PANEL</h1>
 <br><br><br>
@@ -189,16 +194,89 @@ xmlhttp.onreadystatechange=function()
 </ul>		
 </nav>
 
-
+<form>
+<select name="select"><option value="" selected>select</option>
+<option value="cardiologist" >cardiologist</option>
+<option value="orthopadic">orthopadic</option>
+<option value="cardiologist" >cardiologist</option>
+<option value="orthopaedic">orthopaedic</option>
+<option value="cardiologist" >cardiologist</option>
+<option value="orthopaedic">orthopaedic</option>
+<option value="cardiologist" >cardiologist</option>
+<option value="orthopaedic">orthopaedic</option>
+</select>
+<input type="submit" name="but" value="submit"></form>
   <form id="searchbox" action=""><table>
 
-<tr><td>Find a specialist Or Browse by Speciality<input type="text" id="search" onKeyUp="searc(this.value)" placeholder="Type here"    ></td></tr>
-
-<tr><td id="main"></td></tr>
+<tr><td>Find a specialist Or Browse by Speciality<input type="text" placeholder="Type here" name="searchbr"></td><td></td><td><input type="submit"name="searchk" value="search"></td></tr>
+	<tr><td id="main"></td></tr>
 
 </table></form>
+
 <div class="clear"></div>
-     </div>       
+     <?php
+	 
+$servername = "localhost";
+$username = "root";
+$password = "";
+$db="medicare";
+$conn = new mysqli($servername, $username, $password,$db);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+
+$select=$_REQUEST['select'];
+echo"$select";
+if($_REQUEST['but'])
+{
+	$sql = "select firstname,lastname,emailid from doctor where speciality='$select'";
+	$result = $conn->query($sql);
+	
+	foreach($result as $val)
+	{
+		if($val!="")
+		{
+		echo"<table border='1'>";
+		echo"<br> <tr><td> &nbsp;&nbsp;&nbsp;flirst name &nbsp;&nbsp; </td> "."<td>&nbsp;&nbsp;last name</td>";
+			
+			echo "<br><tr><td> &nbsp;&nbsp;&nbsp;".$val["firstname"]."&nbsp;&nbsp; </td> "."<td>&nbsp;&nbsp;".$val["lastname"]."";
+			echo '<a href="doctprof.php?content='.$val['emailid'].'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;view profile</a></td>';
+			
+			echo"</table>";
+			
+			}
+	}
+	}
+?>
+<?php
+
+$uiid=$_SESSION['uid'];
+
+$select=$_REQUEST['select'];
+ $searchbr=$_REQUEST['searchbr'];
+if($_REQUEST['searchk'])
+{
+	$sql = "select firstname,lastname,emailid from doctor where firstname='$searchbr'";
+	$result = $conn->query($sql);
+	
+	foreach($result as $val)
+	{
+		if($val!="")
+		{
+		echo"<table border='1'>";
+		echo"<br> <tr><td> &nbsp;&nbsp;&nbsp;flirst name &nbsp;&nbsp; </td> "."<td>&nbsp;&nbsp;last name</td>";
+					
+			echo "<br><tr><td>&nbsp;&nbsp;&nbsp;".$val["firstname"]."&nbsp;&nbsp; </td> "."<td>&nbsp;&nbsp;".$val["lastname"]."";
+			echo '<a href="doctprof.php?content='.$val['emailid'].'">    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;view profile</a></td>';
+			echo"</table>";
+			}
+			else echo" there is no doctor registered with this name in our website";
+	}
+	}?>
+</div>       
     <div class="clear"></div>  
    </div>
  </div> 
@@ -243,5 +321,6 @@ Video call
     </div>
   </section>
 </header>
+
 </body>
 </html>
